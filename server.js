@@ -18,7 +18,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-app.get("https://nb-hqpy.onrender.com/api/notes", async (req, res) => {
+app.get("/api/notes", async (req, res) => {
   try {
     const notes = await Note.find().sort({ _id: -1 });
     res.json(notes);
@@ -27,7 +27,7 @@ app.get("https://nb-hqpy.onrender.com/api/notes", async (req, res) => {
   }
 });
 
-app.post("https://nb-hqpy.onrender.com/api/notes", async (req, res) => {
+app.post("/api/notes", async (req, res) => {
   try {
     const { text } = req.body;
 
@@ -45,7 +45,7 @@ app.post("https://nb-hqpy.onrender.com/api/notes", async (req, res) => {
   }
 });
 
-app.delete("https://nb-hqpy.onrender.com/api/notes/:id", async (req, res) => {
+app.delete("/api/notes/:id", async (req, res) => {
   try {
     await Note.findByIdAndDelete(req.params.id);
     res.json({ message: "Deleted" });
